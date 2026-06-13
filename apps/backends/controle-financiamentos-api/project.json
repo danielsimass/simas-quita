@@ -47,13 +47,13 @@
     "prisma-generate": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "cd apps/backends/controle-financiamentos-api && DATABASE_URL=file:./prisma/dev.db pnpm exec prisma generate"
+        "command": "cd apps/backends/controle-financiamentos-api && pnpm exec prisma generate"
       }
     },
     "prisma-migrate": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "cd apps/backends/controle-financiamentos-api && DATABASE_URL=file:./prisma/dev.db pnpm exec prisma migrate dev"
+        "command": "cd apps/backends/controle-financiamentos-api && pnpm exec prisma migrate dev"
       }
     }
   }

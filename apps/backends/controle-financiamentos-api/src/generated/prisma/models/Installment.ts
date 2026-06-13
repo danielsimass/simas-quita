@@ -488,6 +488,7 @@ export type InstallmentCreateOrConnectWithoutFinancingInput = {
 
 export type InstallmentCreateManyFinancingInputEnvelope = {
   data: Prisma.InstallmentCreateManyFinancingInput | Prisma.InstallmentCreateManyFinancingInput[]
+  skipDuplicates?: boolean
 }
 
 export type InstallmentUpsertWithWhereUniqueWithoutFinancingInput = {
@@ -1289,6 +1290,7 @@ export type InstallmentCreateManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * The data used to create many Installments.
    */
   data: Prisma.InstallmentCreateManyInput | Prisma.InstallmentCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1307,6 +1309,7 @@ export type InstallmentCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ext
    * The data used to create many Installments.
    */
   data: Prisma.InstallmentCreateManyInput | Prisma.InstallmentCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

@@ -514,6 +514,7 @@ export type PrepaymentCreateOrConnectWithoutFinancingInput = {
 
 export type PrepaymentCreateManyFinancingInputEnvelope = {
   data: Prisma.PrepaymentCreateManyFinancingInput | Prisma.PrepaymentCreateManyFinancingInput[]
+  skipDuplicates?: boolean
 }
 
 export type PrepaymentUpsertWithWhereUniqueWithoutFinancingInput = {
@@ -1326,6 +1327,7 @@ export type PrepaymentCreateManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * The data used to create many Prepayments.
    */
   data: Prisma.PrepaymentCreateManyInput | Prisma.PrepaymentCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1344,6 +1346,7 @@ export type PrepaymentCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exte
    * The data used to create many Prepayments.
    */
   data: Prisma.PrepaymentCreateManyInput | Prisma.PrepaymentCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

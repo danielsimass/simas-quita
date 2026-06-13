@@ -9,7 +9,7 @@ COPY apps/backends/controle-financiamentos-api ./apps/backends/controle-financia
 COPY libs/shared-financing-types ./libs/shared-financing-types
 
 RUN pnpm install --frozen-lockfile
-RUN cd apps/backends/controle-financiamentos-api && DATABASE_URL="file:./prisma/dev.db" pnpm exec prisma generate
+RUN cd apps/backends/controle-financiamentos-api && pnpm exec prisma generate
 RUN pnpm exec nx build controle-financiamentos-api
 
 FROM node:22-alpine AS runner
@@ -33,4 +33,4 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
   CMD wget -qO- http://localhost:3000/health || exit 1
 
-CMD ["node", "dist-prod/main.js"]
+CMD ["sh", "-c", "pnpm exec prisma migrate deploy && node dist-prod/main.js"]

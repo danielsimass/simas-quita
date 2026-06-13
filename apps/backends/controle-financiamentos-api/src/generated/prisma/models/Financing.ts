@@ -627,6 +627,7 @@ export type FinancingCreateOrConnectWithoutUserInput = {
 
 export type FinancingCreateManyUserInputEnvelope = {
   data: Prisma.FinancingCreateManyUserInput | Prisma.FinancingCreateManyUserInput[]
+  skipDuplicates?: boolean
 }
 
 export type FinancingUpsertWithWhereUniqueWithoutUserInput = {
@@ -1657,6 +1658,7 @@ export type FinancingCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * The data used to create many Financings.
    */
   data: Prisma.FinancingCreateManyInput | Prisma.FinancingCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1675,6 +1677,7 @@ export type FinancingCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    * The data used to create many Financings.
    */
   data: Prisma.FinancingCreateManyInput | Prisma.FinancingCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */
