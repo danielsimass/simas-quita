@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "rootDir": "./src",
+    "rootDir": "../../../",
     "outDir": "./dist",
     "module": "commonjs",
     "types": ["node"],
@@ -12,7 +12,7 @@
     "paths": {
       "@prisma/client": ["src/generated/prisma/client"],
       "@simas-quita/shared-financing-types": [
-        "../../../libs/shared-financing-types/dist/src/index.d.ts"
+        "../../../libs/shared-financing-types/src/index.ts"
       ]
     }
   },
