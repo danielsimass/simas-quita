@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum InstallmentStatus {
+  PENDING
+  PAID
+}
+
+model User {
+  id                    String         @id @default(uuid())
+  name                  String
+  email                 String         @unique
+  passwordHash          String         @map("password_hash")
+  profileSetupCompleted Boolean        @default(false) @map("profile_setup_completed")
+  createdAt             DateTime       @default(now()) @map("created_at")
+  refreshTokens         RefreshToken[]
+  financings            Financing[]
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String    @id @default(uuid())
+  userId    String    @map("user_id")
+  tokenHash String    @map("token_hash")
+  expiresAt DateTime  @map("expires_at")
+  revokedAt DateTime? @map("revoked_at")
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("refresh_tokens")
+}
+
+model Financing {
+  id                String        @id @default(uuid())
+  userId            String        @map("user_id")
+  name              String
+  institution       String
+  financedAmount    Decimal       @map("financed_amount")
+  installmentCount  Int           @map("installment_count")
+  installmentAmount Decimal       @map("installment_amount")
+  firstDueDate      DateTime      @map("first_due_date")
+  notes             String?
+  createdAt         DateTime      @default(now()) @map("created_at")
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  installments      Installment[]
+  prepayments       Prepayment[]
+
+  @@map("financings")
+}
+
+model Installment {
+  id          String            @id @default(uuid())
+  financingId String            @map("financing_id")
+  number      Int
+  amount      Decimal
+  dueDate     DateTime          @map("due_date")
+  status      InstallmentStatus @default(PENDING)
+  paidAt      DateTime?         @map("paid_at")
+  financing   Financing         @relation(fields: [financingId], references: [id], onDelete: Cascade)
+
+  @@unique([financingId, number])
+  @@map("installments")
+}
+
+model Prepayment {
+  id                     String    @id @default(uuid())
+  financingId            String    @map("financing_id")
+  date                   DateTime
+  amount                 Decimal
+  installmentCount       Int       @map("installment_count")
+  discount               Decimal
+  paidInstallmentNumbers String    @map("paid_installment_numbers")
+  remainingBalanceAfter  Decimal   @map("remaining_balance_after")
+  financing              Financing @relation(fields: [financingId], references: [id], onDelete: Cascade)
+
+  @@map("prepayments")
+}

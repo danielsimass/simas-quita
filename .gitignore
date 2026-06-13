@@ -1,0 +1,13 @@
+dist/
+dist-prod/
+node_modules
+.nx
+coverage
+*.db
+.env
+.cursor
+
+# Accidental tsc output in shared lib source (breaks Vite ESM resolution)
+libs/shared-financing-types/src/**/*.js
+libs/shared-financing-types/src/**/*.js.map
+libs/shared-financing-types/src/**/*.d.ts

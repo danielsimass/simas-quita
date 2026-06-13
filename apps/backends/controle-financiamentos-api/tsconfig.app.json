@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "module": "commonjs",
+    "types": ["node"],
+    "emitDecoratorMetadata": true,
+    "target": "ES2022",
+    "importHelpers": true,
+    "paths": {
+      "@prisma/client": ["src/generated/prisma/client"],
+      "@simas-quita/shared-financing-types": [
+        "../../../libs/shared-financing-types/dist/src/index.d.ts"
+      ]
+    }
+  },
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"],
+  "include": ["src/**/*.ts"]
+}

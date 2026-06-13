@@ -1,0 +1,59 @@
+{
+  "name": "controle-financiamentos-web",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/frontends/controle-financiamentos-web/src",
+  "projectType": "application",
+  "tags": ["scope:frontend", "type:app"],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/frontends/controle-financiamentos-web"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "controle-financiamentos-web:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "controle-financiamentos-web:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "controle-financiamentos-web:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "controle-financiamentos-web:build"
+      }
+    },
+    "test": {
+      "executor": "@nx/vitest:test",
+      "options": {
+        "passWithNoTests": false,
+        "reportsDirectory": "../../../coverage/apps/frontends/controle-financiamentos-web"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

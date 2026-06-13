@@ -1,0 +1,60 @@
+{
+  "name": "controle-financiamentos-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/backends/controle-financiamentos-api/src",
+  "projectType": "application",
+  "tags": ["scope:backend", "type:app"],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "apps/backends/controle-financiamentos-api/dist-prod",
+        "main": "apps/backends/controle-financiamentos-api/src/main.ts",
+        "tsConfig": "apps/backends/controle-financiamentos-api/tsconfig.app.json",
+        "webpackConfig": "apps/backends/controle-financiamentos-api/webpack.config.js"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
+      "dependsOn": ["shared-financing-types:build"],
+      "options": {
+        "command": "nest start --watch",
+        "cwd": "apps/backends/controle-financiamentos-api"
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "command": "node dist/main.js",
+          "cwd": "apps/backends/controle-financiamentos-api",
+          "dependsOn": ["build"]
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vitest:test",
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/apps/backends/controle-financiamentos-api"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "prisma-generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd apps/backends/controle-financiamentos-api && DATABASE_URL=file:./prisma/dev.db pnpm exec prisma generate"
+      }
+    },
+    "prisma-migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd apps/backends/controle-financiamentos-api && DATABASE_URL=file:./prisma/dev.db pnpm exec prisma migrate dev"
+      }
+    }
+  }
+}

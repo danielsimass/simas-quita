@@ -1,0 +1,29 @@
+{
+  "name": "shared-financing-types",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared-financing-types/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:types"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libs/shared-financing-types/dist",
+        "main": "libs/shared-financing-types/src/index.ts",
+        "tsConfig": "libs/shared-financing-types/tsconfig.lib.json",
+        "generatePackageJson": false
+      }
+    },
+    "test": {
+      "executor": "@nx/vitest:test",
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/libs/shared-financing-types"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

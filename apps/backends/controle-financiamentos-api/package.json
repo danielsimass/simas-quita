@@ -1,0 +1,8 @@
+{
+  "name": "@simas-quita/controle-financiamentos-api",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@simas-quita/shared-financing-types": "workspace:*"
+  }
+}
